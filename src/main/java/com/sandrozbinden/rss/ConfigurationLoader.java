@@ -15,4 +15,8 @@ public class ConfigurationLoader {
         }
         return INSTANCE.configuration;
     }
+
+    public static void setConfiguration(Configuration configuration) {
+        INSTANCE.configuration = configuration;
+    }
 }
