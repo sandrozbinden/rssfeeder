@@ -41,7 +41,7 @@ public class SolrIndexer {
                     logger.info(" Processed " + lineCounter + " of " + lines.size() + " feeds");
                 }
             }
-            logger.info("Finished processing file: " + textFile.getName() + " imported " + lines.size() + "feeds");
+            logger.info("Finished processing file: " + textFile.getName() + " imported " + lines.size() + " feeds");
             fileCounter = fileCounter + 1;
             Files.move(textFile, new File(indexProcessedDirectory, textFile.getName()));
         }
