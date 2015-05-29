@@ -21,10 +21,9 @@ public class SolrIndexer {
     private static final Logger logger = LoggerFactory.getLogger(SolrIndexer.class);
 
     public void indexFeedFiles(File indexInputDirectory, File indexProcessedDirectory, File indexErrorDirectory) throws IOException, SolrServerException {
-        File rootDirectory = new File("src/test/resources/data");
         logger.info("Importing files from directory: " + indexInputDirectory.getCanonicalPath());
         FeedParser feedParser = new FeedParser();
-        File[] textFiles = rootDirectory.listFiles();
+        File[] textFiles = indexInputDirectory.listFiles();
         int fileCounter = 0;
         for (File textFile : textFiles) {
             logger.info("Processing file: " + textFile.getName() + " file " + fileCounter + " of " + textFiles.length);
