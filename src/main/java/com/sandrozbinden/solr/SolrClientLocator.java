@@ -1,6 +1,9 @@
 package com.sandrozbinden.solr;
 
 import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+
+import com.sandrozbinden.rss.ConfigurationLoader;
 
 public class SolrClientLocator {
 
@@ -9,6 +12,9 @@ public class SolrClientLocator {
     public static final SolrClientLocator INSTANCE = new SolrClientLocator();
 
     public static synchronized SolrClient getSolrClient() {
+        if (INSTANCE.solrClient == null) {
+            INSTANCE.solrClient = new HttpSolrClient(ConfigurationLoader.getConfig().getSolrURL());
+        }
         return INSTANCE.solrClient;
     }
 
