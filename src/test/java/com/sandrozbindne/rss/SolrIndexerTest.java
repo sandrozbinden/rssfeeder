@@ -10,6 +10,8 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 import com.sandrozbinden.rss.Feed;
@@ -19,6 +21,8 @@ import com.sandrozbinden.solr.SolrClientLocator;
 import com.sandrozbinden.solr.SolrIndexer;
 
 public class SolrIndexerTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(SolrIndexerTest.class);
 
     @Before
     public void initServer() {
@@ -39,26 +43,26 @@ public class SolrIndexerTest {
     public void indexFiles() throws IOException, SolrServerException {
         SolrIndexer solrIndexer = new SolrIndexer();
         File rootDirectory = new File("src/test/resources/data");
-        System.out.println("Importing files from directory: " + rootDirectory.getCanonicalPath());
+        logger.info("Importing files from directory: " + rootDirectory.getCanonicalPath());
         FeedParser feedParser = new FeedParser();
         File[] textFiles = rootDirectory.listFiles();
         int fileCounter = 0;
         for (File textFile : textFiles) {
-            System.out.println("Processing file: " + textFile.getName() + " file " + fileCounter + " of " + textFiles.length);
+            logger.info("Processing file: " + textFile.getName() + " file " + fileCounter + " of " + textFiles.length);
             List<String> lines = Files.readAllLines(textFile.toPath(), Charsets.UTF_8);
             int lineCounter = 0;
             for (String line : lines) {
                 try {
                     solrIndexer.index(feedParser.parse(line));
                 } catch (InvalidFeedInput e) {
-                    System.out.println("Can't add feed: " + lineCounter + " of file " + textFile.getName());
+                    logger.warn("Can't add feed: " + lineCounter + " of file " + textFile.getName());
                 }
                 lineCounter = lineCounter + 1;
                 if (lineCounter % 100 == 0) {
-                    System.out.println(" Processed " + lineCounter + " of " + lines.size() + " feeds");
+                    logger.info(" Processed " + lineCounter + " of " + lines.size() + " feeds");
                 }
             }
-            System.out.println("Finished processing file: " + textFile.getName() + " imported " + lines.size() + "feeds");
+            logger.info("Finished processing file: " + textFile.getName() + " imported " + lines.size() + "feeds");
             fileCounter = fileCounter + 1;
         }
     }
