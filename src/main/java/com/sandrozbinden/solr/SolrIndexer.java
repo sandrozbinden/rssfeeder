@@ -1,5 +1,6 @@
 package com.sandrozbinden.solr;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.solr.client.solrj.SolrClient;
@@ -22,5 +23,9 @@ public class SolrIndexer {
         solrInputDocument.addField("publishingDate", feed.getPublishingDate());
         client.add(solrInputDocument);
         client.commit();
+    }
+
+    public void indexFeedFiles(File indexInputDirectory, File indexProcessedDirectory, File indexErrorDirectory) {
+        //
     }
 }
