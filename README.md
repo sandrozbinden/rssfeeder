@@ -10,4 +10,5 @@ TODO:
 	
 Build status 
 
-https://travis-ci.org/sandrozbinden/rssfeeder.svg	
+![alt tag](https://travis-ci.org/sandrozbinden/rssfeeder.svg)
+	
