@@ -42,6 +42,9 @@ public class RSSFeeder {
             SolrIndexer solrIndexer = new SolrIndexer();
             solrIndexer.indexFeedFiles(configuration.getIndexInputDirectory(), configuration.getIndexProcessedDirectory(),
                     configuration.getIndexErrorDirectory());
+        } else if (commandLine.hasOption("query")) {
+            SimilarFeedQuery similarFeedQuery = new SimilarFeedQuery();
+            similarFeedQuery.writeSimilarFeed(commandLine.getOptionValue("query"));
         }
     }
 

@@ -7,6 +7,8 @@
 *.jar
 *.war
 *.ear
+log
+query/*.txt
 
 target
 
