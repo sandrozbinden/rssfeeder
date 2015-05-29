@@ -10,5 +10,5 @@ TODO:
 	
 Build status 
 
-![alt tag](https://travis-ci.org/sandrozbinden/rssfeeder.svg)
+[![Build Status](https://travis-ci.org/sandrozbinden/rssfeeder.svg?branch=master)](https://travis-ci.org/sandrozbinden/rssfeeder)
 	
