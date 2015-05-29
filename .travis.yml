@@ -2,4 +2,4 @@ language: java
 jdk:
   - openjdk7
   - oraclejdk7
- script: mvn clean test install package assembly:single
+ 
