@@ -7,3 +7,7 @@ TODO:
 	- Add logger framework
 	- Embbeded Solr Tests to test similarty
 	- Automatically deploy
+	
+Build status 
+
+https://travis-ci.org/sandrozbinden/rssfeeder.svg	
